@@ -1,0 +1,47 @@
+create table ora_ver.OVC_PROJECT
+(
+  id          NUMBER(10) not null,
+  name        VARCHAR2(100) not null,
+  description VARCHAR2(255),
+  open_date   DATE default sysdate not null,
+  close_date  DATE
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_PROJECT
+  is 'Проекты';
+comment on column ora_ver.OVC_PROJECT.id
+  is 'ID';
+comment on column ora_ver.OVC_PROJECT.name
+  is 'Название';
+comment on column ora_ver.OVC_PROJECT.description
+  is 'Коментарий';
+comment on column ora_ver.OVC_PROJECT.open_date
+  is 'Дата начала';
+comment on column ora_ver.OVC_PROJECT.close_date
+  is 'Дата окончания';
+alter table ora_ver.OVC_PROJECT
+  add constraint PK_OVC_PROJECT primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_PROJECT
+  add constraint CHK_OVC_PROJECT_DATE
+  check (open_date>=close_date or close_date is null);
+

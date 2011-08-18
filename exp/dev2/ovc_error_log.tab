@@ -1,0 +1,48 @@
+create table ora_ver.OVC_ERROR_LOG
+(
+  id               NUMBER(10) not null,
+  error_time       DATE not null,
+  code             NUMBER(10) not null,
+  message          VARCHAR2(2000),
+  terminal         VARCHAR2(50),
+  os_user          VARCHAR2(50),
+  change_object_id NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_ERROR_LOG
+  is 'Журнал ошибок';
+comment on column ora_ver.OVC_ERROR_LOG.error_time
+  is 'Время ';
+comment on column ora_ver.OVC_ERROR_LOG.code
+  is 'Код ';
+comment on column ora_ver.OVC_ERROR_LOG.message
+  is 'Сообщение';
+comment on column ora_ver.OVC_ERROR_LOG.terminal
+  is 'Компьютер';
+comment on column ora_ver.OVC_ERROR_LOG.os_user
+  is 'Имя ползователя ОС';
+comment on column ora_ver.OVC_ERROR_LOG.change_object_id
+  is 'ID события которое вызвало исключение';
+alter table ora_ver.OVC_ERROR_LOG
+  add constraint PK_OVC_ERROR_LOG_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+

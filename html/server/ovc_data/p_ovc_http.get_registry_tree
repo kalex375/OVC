@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<root>
+  <path id="ERROR" code="ERROR" text="Error" level="2" iconCls="icon_folder_open"/>
+  <path id="LOCKS" code="LOCKS" text="Lock" level="2" iconCls="icon_folder_open"/>
+  <path id="PROJECT" code="PROJECT" text="Project" level="2" iconCls="icon_folder_open"/>
+  <path id="SYSTEM" code="SYSTEM" text="System" level="2" iconCls="icon_folder_open"/>
+</root>
+

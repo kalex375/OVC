@@ -1,0 +1,69 @@
+create table ora_ver.OVC_NAVIGATION
+(
+  id          NUMBER(10) not null,
+  code        VARCHAR2(50) not null,
+  name        VARCHAR2(50) not null,
+  description VARCHAR2(255),
+  perent_id   NUMBER(10),
+  order_code  NUMBER(5),
+  xtype       VARCHAR2(50),
+  icon        VARCHAR2(50)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_NAVIGATION
+  is 'Панель управления для клиентов';
+comment on column ora_ver.OVC_NAVIGATION.id
+  is 'ID';
+comment on column ora_ver.OVC_NAVIGATION.code
+  is 'Код задачи';
+comment on column ora_ver.OVC_NAVIGATION.name
+  is 'Название';
+comment on column ora_ver.OVC_NAVIGATION.description
+  is 'Описание';
+comment on column ora_ver.OVC_NAVIGATION.perent_id
+  is 'Родительский элемент';
+comment on column ora_ver.OVC_NAVIGATION.order_code
+  is 'Порядок сортировки';
+comment on column ora_ver.OVC_NAVIGATION.xtype
+  is 'Класс(xtype) ExtJS';
+comment on column ora_ver.OVC_NAVIGATION.icon
+  is 'Иконка';
+alter table ora_ver.OVC_NAVIGATION
+  add constraint PK_OVC_NAVIGATION_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_NAVIGATION
+  add constraint UK_OVC_NAVIGATION_CODE unique (CODE)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_NAVIGATION
+  add constraint FK_OVC_NAVIGATION_PERENT_ID foreign key (PERENT_ID)
+  references ora_ver.OVC_NAVIGATION (ID);
+

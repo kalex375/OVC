@@ -1,0 +1,45 @@
+create table ora_ver.OVC_REGISTRY_PATH
+(
+  id        NUMBER(10) not null,
+  path      VARCHAR2(30) not null,
+  path_name VARCHAR2(50) not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_REGISTRY_PATH
+  is 'Пути реестра';
+alter table ora_ver.OVC_REGISTRY_PATH
+  add constraint PK_OVC_REGISTRY_PATH primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_REGISTRY_PATH
+  add constraint UK__OVC_REGISTRY_PATH_PATH unique (PATH)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+

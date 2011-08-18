@@ -1,0 +1,53 @@
+create table ora_ver.OVC_CHANGE_SOURCE
+(
+  id               NUMBER(10) not null,
+  change_object_id NUMBER(10) not null,
+  line             NUMBER(10) not null,
+  text             VARCHAR2(2000)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_CHANGE_SOURCE
+  is 'История изменений исходников и команд над объектами';
+comment on column ora_ver.OVC_CHANGE_SOURCE.change_object_id
+  is 'ID изменения объекта';
+comment on column ora_ver.OVC_CHANGE_SOURCE.line
+  is '№ строки';
+comment on column ora_ver.OVC_CHANGE_SOURCE.text
+  is 'текст изменения';
+alter table ora_ver.OVC_CHANGE_SOURCE
+  add constraint PK_OVC_CHANGE_TEXT primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_CHANGE_SOURCE
+  add constraint FK_OVC_CHANGE_TEXT_OBJ_ID foreign key (CHANGE_OBJECT_ID)
+  references ora_ver.OVC_CHANGE_OBJECT (ID) on delete cascade;
+create index ora_ver.I_OVC_CHANGE_TEXT_OB_ID_LINE on ora_ver.OVC_CHANGE_SOURCE (LINE, CHANGE_OBJECT_ID)
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+

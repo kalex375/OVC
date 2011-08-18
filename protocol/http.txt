@@ -1,0 +1,7 @@
+выдали xdbadmin to ora_ver
+добавили dad ='OVC' path \ovc (start.tst)
+добавили путь ovc_data для хранения статического контента (шаблоны, css, js скрипты, img)
+	  begin
+	    i := dbms_xdb.CreateFolder('/ovc_data');
+      end;
+ по ftp подгрузили шаблон 	  

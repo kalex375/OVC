@@ -1,0 +1,52 @@
+
+Connected to: Oracle Database 11g Enterprise Edition Release 11.1.0.6.0 - Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+Export done in CL8MSWIN1251 character set and AL16UTF16 NCHAR character set
+
+About to export specified users ...
+. exporting pre-schema procedural objects and actions
+. exporting foreign function library names for user ORA_VER 
+. exporting PUBLIC type synonyms
+. exporting private type synonyms
+. exporting object type definitions for user ORA_VER 
+About to export ORA_VER's objects ...
+. exporting database links
+. exporting sequence numbers
+. exporting cluster definitions
+. about to export ORA_VER's tables via Conventional Path ...
+. . exporting table              OVC_CHANGE_OBJECT       3180 rows exported
+. . exporting table              OVC_CHANGE_SOURCE      91663 rows exported
+. . exporting table                     OVC_DBLINK          2 rows exported
+. . exporting table                  OVC_ERROR_LOG          1 rows exported
+. . exporting table                   OVC_EVENT_DB         39 rows exported
+. . exporting table                 OVC_FILTER_SET          8 rows exported
+. . exporting table            OVC_FILTER_TEMPLATE          7 rows exported
+. . exporting table                OVC_LOCK_OBJECT          1 rows exported
+. . exporting table                 OVC_NAVIGATION         12 rows exported
+. . exporting table                OVC_OBJECT_TYPE         36 rows exported
+. . exporting table                    OVC_PROJECT          4 rows exported
+. . exporting table             OVC_PROJECT_OBJECT          2 rows exported
+. . exporting table                   OVC_REGISTRY         10 rows exported
+. . exporting table              OVC_REGISTRY_PATH          4 rows exported
+. . exporting table                   OVC_REVISION         12 rows exported
+. . exporting table          OVC_REVISION_TEMPLATE          1 rows exported
+. . exporting table            PLSQL_PROFILER_DATA          0 rows exported
+. . exporting table            PLSQL_PROFILER_RUNS          0 rows exported
+. . exporting table           PLSQL_PROFILER_UNITS          0 rows exported
+. exporting synonyms
+. exporting views
+. exporting stored procedures
+. exporting operators
+. exporting referential integrity constraints
+. exporting triggers
+. exporting indextypes
+. exporting bitmap, functional and extensible indexes
+. exporting posttables actions
+. exporting materialized views
+. exporting snapshot logs
+. exporting job queues
+. exporting refresh groups and children
+. exporting dimensions
+. exporting post-schema procedural objects and actions
+. exporting statistics
+Export terminated successfully without warnings.

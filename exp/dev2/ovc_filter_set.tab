@@ -1,0 +1,75 @@
+create table ora_ver.OVC_FILTER_SET
+(
+  id                   NUMBER(10) not null,
+  filter_id            NUMBER(10) not null,
+  enabled              VARCHAR2(1) default 'F' not null,
+  type                 VARCHAR2(10) default 'SYSTEM' not null,
+  project_id           NUMBER(10),
+  is_auto_lock         VARCHAR2(1),
+  revision_template_id NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_FILTER_SET
+  is 'Группы фильтров для отслеживания объектов';
+comment on column ora_ver.OVC_FILTER_SET.id
+  is 'ID';
+comment on column ora_ver.OVC_FILTER_SET.filter_id
+  is 'ID Фильтра';
+comment on column ora_ver.OVC_FILTER_SET.enabled
+  is 'Включен';
+comment on column ora_ver.OVC_FILTER_SET.type
+  is 'Тип фильтра';
+comment on column ora_ver.OVC_FILTER_SET.project_id
+  is 'ID проекта';
+comment on column ora_ver.OVC_FILTER_SET.is_auto_lock
+  is 'Автоблокировка объекта при попадание в проект';
+comment on column ora_ver.OVC_FILTER_SET.revision_template_id
+  is 'ID шаблона ревизии';
+alter table ora_ver.OVC_FILTER_SET
+  add constraint PK_OVC_FILTER_SET_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_FILTER_SET
+  add constraint FK_OVC_FILTER_SET_FILTER_ID foreign key (FILTER_ID)
+  references ora_ver.OVC_FILTER_TEMPLATE (ID);
+alter table ora_ver.OVC_FILTER_SET
+  add constraint FK_OVC_FILTER_SET_PROJ_ID foreign key (PROJECT_ID)
+  references ora_ver.OVC_PROJECT (ID) on delete cascade;
+alter table ora_ver.OVC_FILTER_SET
+  add constraint FK_OVC_FILTER_SET_REV_ID foreign key (REVISION_TEMPLATE_ID)
+  references ora_ver.OVC_REVISION_TEMPLATE (ID) on delete cascade;
+alter table ora_ver.OVC_FILTER_SET
+  add constraint CHK_FILTER_SET_ENABLED
+  check (ENABLED in ('T','F'));
+alter table ora_ver.OVC_FILTER_SET
+  add constraint CHK_FILTER_SET_IS_AUTO_L
+  check ((IS_AUTO_LOCK is null and TYPE in ('SYSTEM','REVISION')) or (IS_AUTO_LOCK is not null and IS_AUTO_LOCK in ('T','F') and TYPE = 'PROJECT'));
+alter table ora_ver.OVC_FILTER_SET
+  add constraint CHK_FILTER_SET_PROJ
+  check ((TYPE = 'REVISION' and REVISION_TEMPLATE_ID is not null and PROJECT_ID is null) 
+  or 
+  (TYPE = 'PROJECT' and PROJECT_ID is not null and REVISION_TEMPLATE_ID is null) 
+  or 
+  (TYPE ='SYSTEM' and PROJECT_ID is null and REVISION_TEMPLATE_ID is null));
+alter table ora_ver.OVC_FILTER_SET
+  add constraint CHK_FILTER_SET_TYPE
+  check (TYPE in ('PROJECT','SYSTEM','REVISION'));
+

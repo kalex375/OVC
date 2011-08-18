@@ -1,0 +1,38 @@
+PL/SQL Developer Test script 3.0
+34
+DECLARE
+  configxml SYS.XMLType;
+  anonymous_already_set exception;
+  pragma exception_init(anonymous_already_set,-30936); 
+BEGIN
+  --ALTER USER ANONYMOUS ACCOUNT UNLOCK
+  begin
+  -- Modify the configuration
+  SELECT INSERTCHILDXML(xdburitype('/xdbconfig.xml').getXML(),
+                         '/xdbconfig/sysconfig/protocolconfig/httpconfig',
+                         'allow-repository-anonymous-access',
+                         XMLType('<allow-repository-anonymous-access xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd">true</allow-repository-anonymous-access>'),
+                         'xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd"')
+    INTO configxml
+    FROM DUAL;
+  -- Update the configuration to use the modified version
+  DBMS_XDB.cfg_update(configxml);
+  exception when anonymous_already_set then  
+    null;
+  end;
+    
+  dbms_epg.drop_dad('OVC');
+  dbms_epg.create_dad('OVC','/ovc/*');
+  dbms_epg.set_dad_attribute('OVC','database-username','ORA_VER');
+  dbms_epg.set_dad_attribute('OVC','default-page','p_ovc_http.main_page');
+  dbms_epg.set_dad_attribute('OVC','document-table-name','wwv_flow_file_objects$');
+  dbms_epg.set_dad_attribute('OVC','document-path','docs');
+  dbms_epg.set_dad_attribute('OVC','document-procedure','wwv_flow_file_mgr.process_download');
+  dbms_epg.set_dad_attribute('OVC','nls-language','american_america.al32utf8');
+  dbms_epg.set_dad_attribute('OVC', 'error-style', 'DebugStyle');
+  --dbms_epg.set_dad_attribute('OVC','request-validation-function','wwv_flow_epg_include_modules.authorize');
+  dbms_epg.authorize_dad('OVC','ANONYMOUS');
+  commit;
+END;
+0
+0

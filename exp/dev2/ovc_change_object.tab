@@ -1,0 +1,68 @@
+create table ora_ver.OVC_CHANGE_OBJECT
+(
+  id              NUMBER(10) not null,
+  obj_type        VARCHAR2(30),
+  obj_owner       VARCHAR2(30),
+  modify_date     TIMESTAMP(6) default systimestamp,
+  obj_name        VARCHAR2(100),
+  modify_user     VARCHAR2(30),
+  modify_terminal VARCHAR2(50),
+  modify_os_user  VARCHAR2(50),
+  modify_type     VARCHAR2(30),
+  revision_id     NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_CHANGE_OBJECT
+  is 'Изменения в БД';
+comment on column ora_ver.OVC_CHANGE_OBJECT.obj_type
+  is 'Тип объекта';
+comment on column ora_ver.OVC_CHANGE_OBJECT.obj_owner
+  is 'Владелец объекта';
+comment on column ora_ver.OVC_CHANGE_OBJECT.modify_date
+  is 'Дата модификации';
+comment on column ora_ver.OVC_CHANGE_OBJECT.obj_name
+  is 'Имя объекта';
+comment on column ora_ver.OVC_CHANGE_OBJECT.modify_user
+  is 'Имя ползователя БД';
+comment on column ora_ver.OVC_CHANGE_OBJECT.modify_terminal
+  is 'Имя компьютера';
+comment on column ora_ver.OVC_CHANGE_OBJECT.modify_os_user
+  is 'Имя ползователя ОС';
+comment on column ora_ver.OVC_CHANGE_OBJECT.modify_type
+  is 'Тип изменения';
+comment on column ora_ver.OVC_CHANGE_OBJECT.revision_id
+  is 'Ревизия';
+alter table ora_ver.OVC_CHANGE_OBJECT
+  add constraint PK_OVC_CHANGE_OBJECT primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+create index ora_ver.I_OVC_CHANGE_OBJECT_T on ora_ver.OVC_CHANGE_OBJECT (MODIFY_TYPE, OBJ_TYPE, OBJ_OWNER)
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+

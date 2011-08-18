@@ -1,0 +1,81 @@
+create table ora_ver.OVC_FILTER_TEMPLATE
+(
+  id              NUMBER(10) not null,
+  obj_type        VARCHAR2(30) default '%' not null,
+  obj_owner       VARCHAR2(30) default '%' not null,
+  obj_name        VARCHAR2(100) default '%' not null,
+  modify_user     VARCHAR2(30) default '%' not null,
+  modify_terminal VARCHAR2(50) default '%' not null,
+  modify_os_user  VARCHAR2(50) default '%' not null,
+  ignore          VARCHAR2(1) default 'F' not null,
+  name            VARCHAR2(100) not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_FILTER_TEMPLATE
+  is 'Шаблоны фильтров';
+comment on column ora_ver.OVC_FILTER_TEMPLATE.obj_type
+  is 'Тип объекта (маска)';
+comment on column ora_ver.OVC_FILTER_TEMPLATE.obj_owner
+  is 'Владелец объекта (маска)';
+comment on column ora_ver.OVC_FILTER_TEMPLATE.obj_name
+  is 'Название (маска)';
+comment on column ora_ver.OVC_FILTER_TEMPLATE.modify_user
+  is 'Пользователь БД (маска)';
+comment on column ora_ver.OVC_FILTER_TEMPLATE.modify_terminal
+  is 'Компьютер (маска)';
+comment on column ora_ver.OVC_FILTER_TEMPLATE.modify_os_user
+  is 'Пользователь ОС (маска)';
+comment on column ora_ver.OVC_FILTER_TEMPLATE.ignore
+  is 'Игнорировать';
+comment on column ora_ver.OVC_FILTER_TEMPLATE.name
+  is 'Название';
+alter table ora_ver.OVC_FILTER_TEMPLATE
+  add constraint PK_OVC_FILTER_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_FILTER_TEMPLATE
+  add constraint UK_OVC_FILTER_TEMPLATE_NAME unique (NAME)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_FILTER_TEMPLATE
+  add constraint CHK_OVC_FILTER_IGNORE
+  check (IGNORE in ('T','F'));
+create index ora_ver.I_OVC_FILTER_ALL on ora_ver.OVC_FILTER_TEMPLATE (OBJ_TYPE, OBJ_OWNER, OBJ_NAME, MODIFY_USER, MODIFY_TERMINAL, MODIFY_OS_USER)
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+

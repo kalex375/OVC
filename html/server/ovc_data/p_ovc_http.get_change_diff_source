@@ -1,0 +1,64 @@
+<pre class="brush: ovcdiff;">
+None             1create or replace package P_TEMP is
+None             2
+None             3  -- Author  : Kravchenko A.V.
+None             4  -- Created : 14.01.09 16:12:23
+None             5  -- Purpose : Сравнение строк, поиск LCS
+None             6  
+None             7  gc_kNone constant pls_integer := 0;
+None             8  gc_kAdd constant pls_integer := 1;
+None             9  gc_kDelete constant pls_integer := 2;
+None            10  gc_kModify constant pls_integer := 3;
+None            11    
+None            12  type TCompareRecChr is record ( 
+None            13         Kind pls_integer,
+None            14         OldIndex1 pls_integer,
+None            15         OldIndex2 pls_integer,
+None            16         Chr1 varchar2(1),
+None            17         Chr2 varchar2(1)
+None            18         );
+None            19
+None            20  type TCompareRecInt is record ( 
+None            21         Kind pls_integer,
+None            22         OldIndex1 pls_integer,
+None            23         OldIndex2 pls_integer,
+None            24         Int1 pls_integer,
+None            25         Int2 pls_integer
+None            26         );
+None            27
+None            28  type TCompareStat is record ( 
+None            29         Matches   pls_integer,       
+None            30         Modifies  pls_integer,
+None            31         Adds      pls_integer,
+None            32         Deletes   pls_integer
+None            33         );         
+None            34
+None            35  type TListInt is table of pls_integer index by pls_integer;
+None            36
+None            37    
+None            38  -- Сравнить строки
+None            39  procedure Compare(p_str_1 varchar2, p_str_2 varchar2);
+None            40  
+None            41  -- Cравнить массивы чисел
+None            42  procedure Compare(p_ints_1 TListInt, p_ints_2 TListInt);  
+Modify          43  --45
+Add             44  --456
+None            45  -- Установка режима отладки
+None            46  procedure Set_Debug(p_debug pls_integer);
+None            47
+None            48  --Возвращает после сравнения кол-во изменений
+None            49  function Count_Diff return pls_integer;
+None            50
+None            51  --Возвращает статистику после сравнения
+None            52  function Stat_Diff return TCompareStat;
+None            53  
+None            54  --Возвращает элемент из списка сравнения
+None            55  function Get_Diff_Chr(p_index pls_integer) return TCompareRecChr;
+None            56  
+None            57  --Возвращает элемент из списка сравнения
+None            58  function Get_Diff_Int(p_index pls_integer) return TCompareRecInt;
+None         23359
+Delete 56759        --Test
+None            60  procedure Test(p_str_1 varchar2, p_str_2 varchar2);
+None            61  
+</pre>

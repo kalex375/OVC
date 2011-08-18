@@ -1,0 +1,7 @@
+create sequence ora_ver.OVC_FILTER_SET_SEQ
+minvalue 1
+maxvalue 999999999999999999999999999
+start with 61
+increment by 1
+cache 20;
+

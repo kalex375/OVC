@@ -1,0 +1,49 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../server/ovc_data/lib/ext/resources/css/ext-all.css">
+  <script type="text/javascript" src="../server/ovc_data/lib/ext/adapter/ext/ext-base.js"></script>
+  <script type="text/javascript" src="../server/ovc_data/lib/ext/ext-all-debug.js"></script>
+  <script>
+     Ext.onReady(function(){
+button1 = new Ext.Button({
+ text: 'Кнопка1',
+ renderTo: Ext.get('b1')
+});
+
+button2 = new Ext.Button({
+ text: 'Кнопка2',
+ renderTo: Ext.get('b1')
+});
+
+new Ext.Button({
+ text: 'Кнопка3',
+ renderTo: Ext.get('b1'),
+ handler:  function() { Ext.get('data').load({url:'/index.html'}); }
+});
+
+new Ext.Button({
+ text: 'Кнопка4',
+ renderTo: Ext.get('b1'),
+ handler: button4
+});
+
+button1.setHandler(buttonClicked);
+button2.on('mouseover',function(){alert('Кнопка 2');});
+});
+
+function buttonClicked(){
+ Ext.Msg.show({
+        title:'Сообщение',
+        msg: 'Была нажата кнопка!',
+        width: 300,
+        animEl: 'b2',
+        buttons: Ext.Msg.OK});
+		};
+
+function button4(){alert('Кнопка 4');}
+</script>	
+</head>
+<body>
+<div id="b1">1</div>
+</body>
+</html>

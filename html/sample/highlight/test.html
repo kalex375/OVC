@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<head>
+  <title>Highlight</title>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" title="Default" href="styles/default.css">
+  <link rel="alternate stylesheet" title="Dark" href="styles/dark.css">
+  <link rel="alternate stylesheet" title="FAR" href="styles/far.css">
+  <link rel="alternate stylesheet" title="IDEA" href="styles/idea.css">
+  <link rel="alternate stylesheet" title="Sunburst" href="styles/sunburst.css">
+  <link rel="alternate stylesheet" title="Zenburn" href="styles/zenburn.css">
+  <link rel="alternate stylesheet" title="Visual Studio" href="styles/vs.css">
+  <link rel="alternate stylesheet" title="Ascetic" href="styles/ascetic.css">
+  <link rel="alternate stylesheet" title="Magula" href="styles/magula.css">
+  <link rel="alternate stylesheet" title="GitHub" href="styles/github.css">
+  <link rel="alternate stylesheet" title="Brown Paper" href="styles/brown_paper.css">
+  <link rel="alternate stylesheet" title="School Book" href="styles/school_book.css">
+  <link rel="alternate stylesheet" title="IR_Black" href="styles/ir_black.css">
+  <style>
+    h2 {
+      font: bold 100% Arial, sans-serif;
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+    }
+    table {
+      width: 100%;
+    }
+    th {
+      width: 10em; font-weight: normal;
+    }
+    td, th {
+      vertical-align: top;
+      text-align: left;
+    }
+    pre {
+      margin-top: 0;
+    }
+    ul#switch {
+      padding: 0;
+      margin: 0 0 0 -0.5em;
+    }
+    ul#switch li {
+      border-bottom: 1px dashed blue;
+      display: inline;
+      padding: 0;
+      margin: 0.5em;
+      cursor: pointer;
+    }
+    ul#switch li.current {
+      border-bottom: none;
+      cursor: default;
+    }
+  </style>
+
+  <!--
+  Don't include languages as individual files in production environment.
+  Instead use <script src="highlight.pack.js"></script> with highlight.pack.js
+  containing all the languages you've chosen when downloading the library
+  -->
+  <script src="highlight.js"></script>
+  <script src="languages/cs.js"></script>
+  <script src="languages/python.js"></script>
+  <script src="languages/mel.js"></script>
+  <script src="languages/perl.js"></script>
+  <script src="languages/axapta.js"></script>
+  <script src="languages/cpp.js"></script>
+  <script src="languages/sql.js"></script>
+  <script src="languages/smalltalk.js"></script>
+  <script src="languages/profile.js"></script>
+  <script src="languages/bash.js"></script>
+  <script src="languages/html-xml.js"></script>
+  <script src="languages/renderman.js"></script>
+  <script src="languages/1c.js"></script>
+  <script src="languages/delphi.js"></script>
+  <script src="languages/dos.js"></script>
+  <script src="languages/django.js"></script>
+  <script src="languages/vbscript.js"></script>
+  <script src="languages/ini.js"></script>
+  <script src="languages/apache.js"></script>
+  <script src="languages/ruby.js"></script>
+  <script src="languages/css.js"></script>
+  <script src="languages/lisp.js"></script>
+  <script src="languages/java.js"></script>
+  <script src="languages/javascript.js"></script>
+  <script src="languages/php.js"></script>
+  <script src="languages/diff.js"></script>
+  <script src="languages/avrasm.js"></script>
+  <script src="languages/parser3.js"></script>
+  <script src="languages/scala.js"></script>
+  <script>
+  hljs.tabReplace = '    ';
+  hljs.initHighlightingOnLoad();
+  </script>
+
+  <script>
+  // A stylesheet switcher for the test page. Not part of the highlight.js itself
+  // (c) Vladimir Epifanov <voldmar@voldmar.ru>
+  (function(container_id) {
+      if (window.addEventListener) {
+          var attach = function(el, ev, handler) {
+              el.addEventListener(ev, handler, false);
+          }
+      } else if (window.attachEvent) {
+          var attach = function(el, ev, handler) {
+              el.attachEvent('on' + ev, handler);
+          }
+      } else {
+          var attach = function(el, ev, handler) {
+              ev['on' + ev] = handler;
+          }
+      }
+
+
+      attach(window, 'load', function() {
+          var current = null;
+
+          var info = {};
+          var links = document.getElementsByTagName('link');
+          var ul = document.createElement('ul')
+
+          for (var i = 0; (link = links[i]); i++) {
+              if (link.getAttribute('rel').indexOf('style') != -1
+                  && link.title) {
+
+                  var title = link.title;
+
+                  info[title] = {
+                  'link': link,
+                  'li': document.createElement('li')
+                  }
+
+                  ul.appendChild(info[title].li)
+                  info[title].li.title = title;
+
+                  info[title].link.disabled = true;
+
+                  info[title].li.appendChild(document.createTextNode(title));
+                  attach(info[title].li, 'click', (function (el) {
+                      return function() {
+                          current.li.className = '';
+                          current.link.disabled = true;
+                          current = el;
+                          current.li.className = 'current';
+                          current.link.disabled = false;
+                      }})(info[title]));
+              }
+          }
+
+          current = info['Default']
+          current.li.className = 'current';
+          current.link.disabled = false;
+
+          ul.id = 'switch';
+          container = document.getElementById(container_id);
+          container.appendChild(ul);
+      });
+
+  })('styleswitcher');
+  </script>
+<body>
+
+<p>This page is a demo/test showing all languages supported by <a href="http://softwaremaniacs.org/soft/highlight/">highlight.js</a>.
+Most of the code doesn't work :-).
+<p>You can see this page in several different styles bundled with the library or
+write your own (and contribute it back!)
+
+<div id="styleswitcher"></div>
+
+<h2>Automatically detected languages</h2>
+
+<pre>
+<code>declare
+  -- Non-scalar parameters require additional processing 
+  p_ints_1 p_diff.TIntArray;
+  p_ints_2 p_diff.TIntArray;
+  m_compare p_diff.TCompareRecInt;
+  m_str_1 varchar2(60);
+  m_str_2 varchar2(60);
+  m_ch varchar2(60);
+  m_start_time timestamp;
+  
+begin
+  
+  select
+    --t.line,
+    DBMS_UTILITY.get_hash_value(t.text, 1, 65536) 
+    bulk collect into p_ints_1
+  from
+    ovc_change_text t
+  where   
+    t.change_object_id=3831 and
+    1=1
+  order by t.line;
+
+  select
+  --  s.line,
+    DBMS_UTILITY.get_hash_value(s.text, 1, 65536) 
+  bulk collect into p_ints_2
+  from
+    all_source s
+  where
+    s.owner='ORA_VER' and
+    s.type ='PACKAGE BODY' and
+    s.name ='P_GL'
+  order by s.line;
+
+
+  m_start_time:= systimestamp;
+
+  p_diff.compare(p_ints_1 => p_ints_1, p_ints_2 => p_ints_2);
+
+  dbms_output.put_line('');
+  dbms_output.put_line('Out Executed in '||regexp_replace(to_char(LOCALTIMESTAMP-m_start_time), '^(\+|(-))[0 :]*(.*?\d\.\d+?)0*$', '\2\3')||' seconds.');
+  
+  --p_diff.Debug_Show_Compares;
+  
+  for i in 0..p_diff.Get_Compare_Count-1
+  loop
+    m_compare := p_diff.Get_Compare_Int(i);
+    select rpad(decode(m_compare.Kind,0,'None',1,'Add',2,'Delete',3,'Modify',' '),7,' ') into m_ch from dual;
+    if m_compare.oldindex1 is not null then 
+
+      select
+        rpad(nvl(substr(t.text,1,50),' '),50,' ') into m_str_1
+      from
+        ovc_change_text t
+      where   
+        t.change_object_id=3831 and
+        t.line = m_compare.oldindex1;
+    
+    else
+      m_str_1 := rpad(' ',50,' ');
+    end if;      
+
+    if m_compare.oldindex2 is not null then 
+      select
+        rpad(nvl(substr(s.text,1,50),' '),50,' ') into m_str_2 
+      from
+        all_source s
+      where
+        s.owner='ORA_VER' and
+        s.type ='PACKAGE BODY' and
+        s.name ='P_GL' and
+        s.line = m_compare.oldindex2;
+    else
+      m_str_2 := rpad(' ',50,' ');
+    end if;      
+    dbms_output.put_line(replace(rpad(to_char(i),4,' ')||m_ch||'|'||m_str_1||' |'||m_str_2,chr(10),' '));
+  end loop;
+end;
+</code></pre>
+
+</table>

@@ -1,0 +1,23 @@
+.x-grid3-header{
+	background: #f9f9f9 url(../icons/grid3-dblhrow.gif) repeat-x left -2px; !important;
+	cursor:default;
+    zoom:1;
+    padding:1px 0 0 0;
+}
+
+.x-grid3-quickadd .x-grid3-header {
+    background: #f9f9f9 url(../icons/grid3-dblhrow.gif) repeat-x left -2px; !important;
+}
+
+.x-grid3-quickadd .new-row .new-row2 {
+    height:20px;
+}
+
+.x-grid3-quickadd .new-row .new-row2 .x-small-editor {
+    overflow:hidden;
+    width:100%;
+}
+
+.x-grid3-quickadd .new-row .new-row2 .x-small-editor input {
+    font-size:10px;
+}

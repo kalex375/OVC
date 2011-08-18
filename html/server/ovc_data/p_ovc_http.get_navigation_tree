@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<root>
+  <name code="OVC_HOME" id="OVC_HOME" text="OVC Home" xtype="task.ovchomepanel" level="1" iconCls="icon_pack" expanded="true">
+    <name code="TIME_LINE" id="TIME_LINE" text="TimeLine" xtype="task.timelinepanel" level="2" iconCls="icon_gears" expanded="true"/>
+    <name code="PROJECT" id="PROJECT" text="Projects" xtype="task.projectpanel" level="2" iconCls="icon_gears" expanded="true"/>
+    <name code="LOCK" id="LOCK" text="Locks" xtype="task.lockpanel" level="2" iconCls="icon_gears" expanded="true"/>
+    <name code="REVISION" id="REVISION" text="Revisions" level="2" iconCls="icon_gears" expanded="true">
+      <name code="REVISION_TEMPLATE" id="REVISION_TEMPLATE" text="Revision templates" level="3" iconCls="icon_plugin" expanded="true"/>
+    </name>
+    <name code="ERROR_LOG" id="ERROR_LOG" text="Error log" xtype="task.errorlogpanel" level="2" iconCls="icon_gears" expanded="true"/>
+    <name code="SETTING" id="SETTING" text="Settings" level="2" iconCls="icon_gears" expanded="true">
+      <name code="REGISTRY" id="REGISTRY" text="Registry" xtype="task.registrypanel" level="3" iconCls="icon_plugin" expanded="true"/>
+      <name code="OBJECT_TYPE" id="OBJECT_TYPE" text="Object types" xtype="task.objecttypepanel" level="3" iconCls="icon_plugin" expanded="true"/>
+      <name code="FILTER" id="FILTER" text="Filter templates" xtype="task.filterpanel" level="3" iconCls="icon_plugin" expanded="true"/>
+      <name code="DBLINK" id="DBLINK" text="DB links" xtype="task.dblinkpanel" level="3" iconCls="icon_plugin" expanded="true"/>
+    </name>
+  </name>
+</root>
+

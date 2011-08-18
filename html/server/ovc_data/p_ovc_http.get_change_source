@@ -1,0 +1,80 @@
+<pre class="brush: plsql;"> 
+create or replace package P_DIFF is
+
+
+  -- Author  : Kravchenko A.V.
+  -- Created : 14.01.09 16:12:23
+  -- Purpose : Сравнение строк, поиск LCS
+
+
+  ckNone constant pls_integer := 0;
+  ckAdd constant pls_integer := 1;
+  ckDelete constant pls_integer := 2;
+  ckModify constant pls_integer := 3;
+    
+
+  type TCompareRecChr is record ( 
+         Kind pls_integer,
+         OldIndex1 pls_integer,
+         OldIndex2 pls_integer,
+         Chr1 varchar2(1),
+         Chr2 varchar2(1)
+         );
+
+  type TCompareRecInt is record ( 
+         Kind pls_integer,
+         OldIndex1 pls_integer,
+         OldIndex2 pls_integer,
+         Int1 pls_integer,
+         Int2 pls_integer
+         );
+
+  type TDiffStats is record ( 
+         Matches   pls_integer,       
+         Modifies  pls_integer,
+         Adds      pls_integer,
+         Deletes   pls_integer
+         );         
+  
+  type TIntArray is table of pls_integer index by pls_integer;
+    
+
+  -- Сравнить строки
+  procedure Compare(p_str_1 varchar2, 
+                    p_str_2 varchar2);
+  
+
+  --Сравнить массивы
+  procedure Compare(p_ints_1 TIntArray, 
+                    p_ints_2 TIntArray);
+
+
+  --Возвращает после сравнения кол-во изменений
+  function Get_Compare_Count return pls_integer;
+
+
+  --Возвращает статистику после сравнения
+  function Stat_Diff return TDiffStats;
+  
+
+  --Возвращает элемент из списка сравнения
+  function Get_Compare_Chr(p_index pls_integer) return TCompareRecChr;
+
+  
+
+  --Возвращает элемент из списка сравнения
+  function Get_Compare_Int(p_index pls_integer) return TCompareRecInt;
+
+
+
+  --Очистить списки сравнения
+  procedure ClearCompare;
+
+
+
+  --Вывод списка в dbms_output после сравнения
+  procedure Debug_Show_Compares;
+
+end P_DIFF;
+
+</pre>

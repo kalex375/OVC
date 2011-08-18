@@ -1,0 +1,81 @@
+
+.icon_application_view_list {
+    background-image: url(../icons/application_view_list.png) !important;
+}
+.icon_cog {
+    background-image: url(../icons/cog.png) !important;
+}
+.icon_plugin {
+    background-image: url(../icons/plugin.gif) !important;
+}
+
+.icon_accept {
+    background-image: url(../icons/accept.png) !important;
+}
+
+.icon_record_add {
+    background-image: url(../icons/add.gif) !important;
+}
+
+.icon_cross {
+    background-image: url(../icons/cross.gif) !important;
+}
+
+.icon_gears {
+    background-image: url(../icons/gears.png) !important;
+}
+
+.icon_information {
+    background-image: url(../icons/information.png) !important;
+}
+
+.icon_save {
+    background-image: url(../icons/save.gif) !important;
+}
+
+.icon_record_delete {
+    background-image: url(../icons/delete.png) !important;
+}
+
+.icon_record_edit{
+    background-image: url(../icons/table_edit.png) !important;
+}
+
+.icon_pack{
+    background-image: url(../icons/pack.gif) !important;
+}
+
+.icon_folder{
+    background-image: url(../icons/folder.gif) !important;
+}
+
+.icon_folder_open{
+    background-image: url(../icons/folder-open.gif) !important;
+}
+
+.icon_filter{
+    background-image: url(../icons/filter.png) !important;
+}
+
+.icon_filter_del{
+    background-image: url(../icons/filter_del.png) !important;
+}
+
+.icon_package{
+    background-image: url(../icons/package.png) !important;
+}
+
+.icon_objects{
+    background-image: url(../icons/objects.png) !important;
+}
+.icon_traffic_green{
+    background-image: url(../icons/icon_traffic_green.gif) !important;
+}
+
+.icon_traffic_red{
+    background-image: url(../icons/icon_traffic_red.gif) !important;
+}
+
+.icon_traffic_red{
+    background-image: url(../icons/revision.png) !important;
+}

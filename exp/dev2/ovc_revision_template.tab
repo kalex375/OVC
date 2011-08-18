@@ -1,0 +1,46 @@
+create table ora_ver.OVC_REVISION_TEMPLATE
+(
+  id          NUMBER(10) not null,
+  code        VARCHAR2(50) not null,
+  name        VARCHAR2(100),
+  description VARCHAR2(255)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_REVISION_TEMPLATE
+  is 'Шаблоны ревизий';
+alter table ora_ver.OVC_REVISION_TEMPLATE
+  add constraint PK_OVC_REVISION_TEMPLATE_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_REVISION_TEMPLATE
+  add constraint UK_OVC_REVISION_TEMPLATE_CODE unique (CODE)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+

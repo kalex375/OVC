@@ -1,0 +1,84 @@
+create table ora_ver.OVC_LOCK_OBJECT
+(
+  id            NUMBER(10) not null,
+  obj_type      VARCHAR2(30) not null,
+  obj_owner     VARCHAR2(30) not null,
+  obj_name      VARCHAR2(100) not null,
+  lock_user     VARCHAR2(30) not null,
+  lock_terminal VARCHAR2(50) not null,
+  lock_os_user  VARCHAR2(50) not null,
+  lock_time     TIMESTAMP(6) not null,
+  is_full       VARCHAR2(1) default 'F' not null,
+  note          VARCHAR2(255)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_LOCK_OBJECT
+  is 'Блокировка объектов';
+comment on column ora_ver.OVC_LOCK_OBJECT.obj_type
+  is 'Тип объекта';
+comment on column ora_ver.OVC_LOCK_OBJECT.obj_owner
+  is 'Владелец объекта';
+comment on column ora_ver.OVC_LOCK_OBJECT.obj_name
+  is 'Имя объекта';
+comment on column ora_ver.OVC_LOCK_OBJECT.lock_user
+  is 'Имя ползователя БД';
+comment on column ora_ver.OVC_LOCK_OBJECT.lock_terminal
+  is 'Имя компьютера';
+comment on column ora_ver.OVC_LOCK_OBJECT.lock_os_user
+  is 'Имя ползователя ОС';
+comment on column ora_ver.OVC_LOCK_OBJECT.lock_time
+  is 'Время блокировки';
+comment on column ora_ver.OVC_LOCK_OBJECT.is_full
+  is 'Полная блокировка';
+comment on column ora_ver.OVC_LOCK_OBJECT.note
+  is 'Коментарий';
+alter table ora_ver.OVC_LOCK_OBJECT
+  add constraint PK_OVC_LOCK_OBJ_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_LOCK_OBJECT
+  add constraint U_OVC_LOCK_OBJ unique (OBJ_TYPE, OBJ_OWNER, OBJ_NAME)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_LOCK_OBJECT
+  add constraint CHK_OVC_LOCK_OBJ_FULL
+  check (IS_FULL in ('T','F'));
+create index ora_ver.I_OVC_LOCK_OBJ_OTM on ora_ver.OVC_LOCK_OBJECT (OBJ_NAME, OBJ_TYPE, OBJ_OWNER)
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+

@@ -1,0 +1,1 @@
+loadjava -u ORA_VER/ORA_VER@ORCL11 svnkit-1.3.4.6888\trilead.jar svnkit-1.3.4.6888\jna.jar svnkit-1.3.4.6888\sqljet.1.0.3.jar -v -r

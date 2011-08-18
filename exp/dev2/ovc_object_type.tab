@@ -1,0 +1,66 @@
+create table ora_ver.OVC_OBJECT_TYPE
+(
+  id            NUMBER(10) not null,
+  type          VARCHAR2(50) not null,
+  metadata_type VARCHAR2(50),
+  get_function  VARCHAR2(100),
+  is_program    VARCHAR2(1) default 'F' not null,
+  is_compare    VARCHAR2(1) default 'F' not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_OBJECT_TYPE
+  is 'Типы объектов ';
+comment on column ora_ver.OVC_OBJECT_TYPE.id
+  is 'ID';
+comment on column ora_ver.OVC_OBJECT_TYPE.type
+  is 'Название типа';
+comment on column ora_ver.OVC_OBJECT_TYPE.metadata_type
+  is 'Название типа в DBMS_METADATA';
+comment on column ora_ver.OVC_OBJECT_TYPE.get_function
+  is 'Функция для получения описания объекта (исходников)';
+comment on column ora_ver.OVC_OBJECT_TYPE.is_program
+  is 'Исполняемы код';
+comment on column ora_ver.OVC_OBJECT_TYPE.is_compare
+  is 'Возможность сравнивать исходники';
+alter table ora_ver.OVC_OBJECT_TYPE
+  add constraint PK_OVC_OBJECT_TYPE primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_OBJECT_TYPE
+  add constraint UK_OVC_OBJECT_TYPE_CODE unique (TYPE)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_OBJECT_TYPE
+  add constraint CHK_OVC_OBJECT_TYPE_IS_COMP
+  check (is_program in ('T','F'));
+alter table ora_ver.OVC_OBJECT_TYPE
+  add constraint CHK_OVC_OBJECT_TYPE_IS_PROG
+  check (is_program in ('T','F'));
+

@@ -1,0 +1,1 @@
+exp sr_bank/sr_bank@SRDBNEW parfile=parfile.exp

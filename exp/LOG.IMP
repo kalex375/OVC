@@ -1,0 +1,31 @@
+
+Connected to: Oracle Database 11g Enterprise Edition Release 11.1.0.6.0 - Production
+With the Partitioning, OLAP, Data Mining and Real Application Testing options
+
+Export file created by EXPORT:V11.01.00 via conventional path
+
+Warning: the objects were exported by ORA_VER, not by you
+
+import done in CL8MSWIN1251 character set and AL16UTF16 NCHAR character set
+. importing ORA_VER's objects into ORA_VER
+. . importing table            "OVC_CHANGE_OBJECT"       3180 rows imported
+. . importing table            "OVC_CHANGE_SOURCE"      91663 rows imported
+. . importing table                   "OVC_DBLINK"          2 rows imported
+. . importing table                "OVC_ERROR_LOG"          1 rows imported
+. . importing table                 "OVC_EVENT_DB"         39 rows imported
+. . importing table               "OVC_FILTER_SET"          8 rows imported
+. . importing table          "OVC_FILTER_TEMPLATE"          7 rows imported
+. . importing table              "OVC_LOCK_OBJECT"          1 rows imported
+. . importing table               "OVC_NAVIGATION"         12 rows imported
+. . importing table              "OVC_OBJECT_TYPE"         36 rows imported
+. . importing table                  "OVC_PROJECT"          4 rows imported
+. . importing table           "OVC_PROJECT_OBJECT"          2 rows imported
+. . importing table                 "OVC_REGISTRY"         10 rows imported
+. . importing table            "OVC_REGISTRY_PATH"          4 rows imported
+. . importing table                 "OVC_REVISION"         12 rows imported
+. . importing table        "OVC_REVISION_TEMPLATE"          1 rows imported
+. . importing table          "PLSQL_PROFILER_DATA"          0 rows imported
+. . importing table          "PLSQL_PROFILER_RUNS"          0 rows imported
+. . importing table         "PLSQL_PROFILER_UNITS"          0 rows imported
+About to enable constraints...
+Import terminated successfully without warnings.

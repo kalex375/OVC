@@ -1,0 +1,72 @@
+create table ora_ver.OVC_REGISTRY
+(
+  id          NUMBER(10) not null,
+  param       VARCHAR2(30) not null,
+  value       VARCHAR2(100),
+  description VARCHAR2(255),
+  type        VARCHAR2(3) not null,
+  read_only   VARCHAR2(1) default 'F' not null,
+  path_id     NUMBER(10) not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_REGISTRY
+  is 'Настроки системы OVC';
+comment on column ora_ver.OVC_REGISTRY.id
+  is 'ID';
+comment on column ora_ver.OVC_REGISTRY.param
+  is 'Параметр';
+comment on column ora_ver.OVC_REGISTRY.value
+  is 'Значение';
+comment on column ora_ver.OVC_REGISTRY.description
+  is 'Описание';
+comment on column ora_ver.OVC_REGISTRY.type
+  is 'Тип значения';
+comment on column ora_ver.OVC_REGISTRY.read_only
+  is 'Только чтение';
+comment on column ora_ver.OVC_REGISTRY.path_id
+  is 'Раздел';
+alter table ora_ver.OVC_REGISTRY
+  add constraint PK_OVC_REGISTRY_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_REGISTRY
+  add constraint UK_OVC_REGISTRY_TYPE_PARAM unique (PATH_ID, PARAM)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_REGISTRY
+  add constraint FK_OVC_REGISTRY_PATH_ID foreign key (PATH_ID)
+  references ora_ver.OVC_REGISTRY_PATH (ID);
+alter table ora_ver.OVC_REGISTRY
+  add constraint CHK_OVC_REGISTRY_READ
+  check (READ_ONLY in ('T','F'));
+alter table ora_ver.OVC_REGISTRY
+  add constraint CHK_OVC_REGISTRY_TYPE
+  check (TYPE in ('BOL','DAT','INT','NUM','STR'));
+

@@ -1,0 +1,61 @@
+create table ora_ver.OVC_EVENT_DB
+(
+  id          NUMBER(10) not null,
+  modify_type VARCHAR2(30) not null,
+  obj_type    VARCHAR2(30) not null,
+  enabled     VARCHAR2(1) default 'F' not null,
+  save_text   VARCHAR2(1) default 'F' not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_EVENT_DB
+  is 'Справочник событий для отслеживания изменений в БД';
+comment on column ora_ver.OVC_EVENT_DB.modify_type
+  is 'Тип изменения ';
+comment on column ora_ver.OVC_EVENT_DB.obj_type
+  is 'Тип объекта';
+comment on column ora_ver.OVC_EVENT_DB.enabled
+  is 'Фиксировать события';
+comment on column ora_ver.OVC_EVENT_DB.save_text
+  is 'Сохранять исходники изменений';
+alter table ora_ver.OVC_EVENT_DB
+  add constraint PK_OVC_EVENT_DB_TYPE primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_EVENT_DB
+  add constraint UK_OVC_EVENT_DB_OBJ_TYPE unique (MODIFY_TYPE, OBJ_TYPE)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_EVENT_DB
+  add constraint CHK_EVENT_DB_ENABLED
+  check (ENABLED in ('T','F'));
+alter table ora_ver.OVC_EVENT_DB
+  add constraint CHK_EVENT_DB_SAVE_TEXT
+  check (SAVE_TEXT in ('T','F'));
+

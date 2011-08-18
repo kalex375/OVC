@@ -1,0 +1,1 @@
+imp 'SYS/SYS@ORCL11 as sysdba' parfile=parfile.imp

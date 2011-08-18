@@ -1,0 +1,55 @@
+create table ora_ver.OVC_DBLINK
+(
+  id          NUMBER(10) not null,
+  name        VARCHAR2(255) not null,
+  description VARCHAR2(255),
+  type        VARCHAR2(20) not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_DBLINK
+  is 'Удаленные БД';
+comment on column ora_ver.OVC_DBLINK.name
+  is 'Database Link';
+comment on column ora_ver.OVC_DBLINK.description
+  is 'Описание';
+comment on column ora_ver.OVC_DBLINK.type
+  is 'Тип';
+alter table ora_ver.OVC_DBLINK
+  add constraint PK_OVC_DBLINK_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_DBLINK
+  add constraint UK_OVC_DBLINK_NAME unique (NAME)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_DBLINK
+  add constraint CHK_OVC_DBLINK_TYPE
+  check (TYPE in ('TEST','PRODUCTION','DEVELOPMENT','OTHER'));
+

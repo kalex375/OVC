@@ -1,0 +1,64 @@
+create table ora_ver.OVC_PROJECT_OBJECT
+(
+  id         NUMBER(10) not null,
+  project_id NUMBER(10) not null,
+  obj_type   VARCHAR2(30) not null,
+  obj_owner  VARCHAR2(30) not null,
+  obj_name   VARCHAR2(100) not null,
+  is_auto    VARCHAR2(1) not null
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_PROJECT_OBJECT
+  is 'Объекты БД в проектах';
+comment on column ora_ver.OVC_PROJECT_OBJECT.id
+  is 'ID';
+comment on column ora_ver.OVC_PROJECT_OBJECT.project_id
+  is 'ID Проекта';
+comment on column ora_ver.OVC_PROJECT_OBJECT.obj_type
+  is 'Тип объекта';
+comment on column ora_ver.OVC_PROJECT_OBJECT.obj_owner
+  is 'Владелец объекта';
+comment on column ora_ver.OVC_PROJECT_OBJECT.obj_name
+  is 'Имя объекта';
+alter table ora_ver.OVC_PROJECT_OBJECT
+  add constraint PK_OVC_PROJ_OBJ_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_PROJECT_OBJECT
+  add constraint UI_OVC_PROJ_OBJ_NAME unique (PROJECT_ID, OBJ_TYPE, OBJ_OWNER, OBJ_NAME)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_PROJECT_OBJECT
+  add constraint FK_OVC_PROJ_OBJ_PR_ID foreign key (PROJECT_ID)
+  references ora_ver.OVC_PROJECT (ID) on delete cascade;
+alter table ora_ver.OVC_PROJECT_OBJECT
+  add constraint CHK_OVC_PROJECT_OBJ_AUTO
+  check (IS_AUTO in ('T','F'));
+

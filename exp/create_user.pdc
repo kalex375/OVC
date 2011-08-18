@@ -1,0 +1,38 @@
+-- Create the user 
+create user ORA_VER IDENTIFIED BY "ORA_VER"
+  default tablespace USERS
+  temporary tablespace TEMP
+  profile DEFAULT
+  quota unlimited on users;
+-- Grant/Revoke object privileges 
+grant select on sys.LINK$ to ORA_VER;
+-- Grant/Revoke role privileges 
+grant connect to ORA_VER;
+grant execute_catalog_role to ORA_VER;
+grant exp_full_database to ORA_VER;
+grant resource to ORA_VER;
+grant select_catalog_role to ORA_VER;
+grant xdbadmin to ORA_VER;
+-- Grant/Revoke system privileges 
+grant administer database trigger to ORA_VER;
+grant administer resource manager to ORA_VER;
+grant administer sql management object to ORA_VER;
+grant alter session to ORA_VER;
+grant backup any table to ORA_VER;
+grant create database link to ORA_VER;
+grant create procedure to ORA_VER;
+grant create public database link to ORA_VER;
+grant create sequence to ORA_VER;
+grant create session to ORA_VER;
+grant create table to ORA_VER;
+grant create trigger to ORA_VER;
+grant create view to ORA_VER;
+grant debug any procedure to ORA_VER;
+grant debug connect session to ORA_VER;
+grant execute any procedure to ORA_VER;
+grant execute any type to ORA_VER;
+grant read any file group to ORA_VER;
+grant resumable to ORA_VER;
+grant select any dictionary to ORA_VER;
+grant select any sequence to ORA_VER;
+grant select any table to ORA_VER;

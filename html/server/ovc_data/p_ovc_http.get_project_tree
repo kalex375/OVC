@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<root>
+  <name code="81" id="81" text="123" level="1" iconCls="icon_package" expanded="false" real_id="81" node_type="project">
+    <name code="f_81" id="f_81" text="Filter" level="2" iconCls="icon_folder_open" expanded="false" node_type="filter_list"/>
+    <name code="o_81" id="o_81" text="Object" level="2" iconCls="icon_folder_open" expanded="false" node_type="object_list"/>
+    <name code="r_81" id="r_81" text="Revision" level="2" iconCls="icon_folder_open" expanded="false" node_type="revision_list"/>
+  </name>
+  <name code="42" id="42" text="TEST 1" level="1" iconCls="icon_package" expanded="false" real_id="42" node_type="project">
+    <name code="f_42" id="f_42" text="Filter" level="2" iconCls="icon_folder_open" expanded="false" node_type="filter_list">
+      <name code="fi_62" id="fi_62" text="template 7" level="3" iconCls="icon_filter" expanded="false" real_id="62" node_type="filter"/>
+    </name>
+    <name code="o_42" id="o_42" text="Object" level="2" iconCls="icon_folder_open" expanded="false" node_type="object_list"/>
+    <name code="r_42" id="r_42" text="Revision" level="2" iconCls="icon_folder_open" expanded="false" node_type="revision_list"/>
+  </name>
+  <name code="61" id="61" text="TEST 2" level="1" iconCls="icon_package" expanded="false" real_id="61" node_type="project">
+    <name code="f_61" id="f_61" text="Filter" level="2" iconCls="icon_folder_open" expanded="false" node_type="filter_list"/>
+    <name code="o_61" id="o_61" text="Object" level="2" iconCls="icon_folder_open" expanded="false" node_type="object_list"/>
+    <name code="r_61" id="r_61" text="Revision" level="2" iconCls="icon_folder_open" expanded="false" node_type="revision_list"/>
+  </name>
+  <name code="1" id="1" text="TEST_PROJECT" level="1" iconCls="icon_package" expanded="false" real_id="1" node_type="project">
+    <name code="f_1" id="f_1" text="Filter" level="2" iconCls="icon_folder_open" expanded="false" node_type="filter_list">
+      <name code="fi_5" id="fi_5" text="template 7" level="3" iconCls="icon_filter" expanded="false" real_id="5" node_type="filter"/>
+    </name>
+    <name code="o_1" id="o_1" text="Object" level="2" iconCls="icon_folder_open" expanded="false" node_type="object_list">
+      <name code="ot_17_1" id="ot_17_1" text="PACKAGE" level="3" iconCls="icon_folder_open" expanded="false" node_type="object">
+        <name code="oi_4" id="oi_4" text="P_GL" level="4" iconCls="icon_objects" expanded="false" real_id="4" node_type="object"/>
+      </name>
+      <name code="ot_18_1" id="ot_18_1" text="PACKAGE BODY" level="3" iconCls="icon_folder_open" expanded="false" node_type="object">
+        <name code="oi_5" id="oi_5" text="P_GL" level="4" iconCls="icon_objects" expanded="false" real_id="5" node_type="object"/>
+      </name>
+    </name>
+    <name code="r_1" id="r_1" text="Revision" level="2" iconCls="icon_folder_open" expanded="false" node_type="revision_list">
+      <name code="ri_1" id="ri_1" text="1" level="3" iconCls="revision" expanded="false" real_id="1" node_type="revision"/>
+      <name code="ri_2" id="ri_2" text="2" level="3" iconCls="revision" expanded="false" real_id="2" node_type="revision"/>
+      <name code="ri_21" id="ri_21" text="21" level="3" iconCls="revision" expanded="false" real_id="21" node_type="revision"/>
+      <name code="ri_22" id="ri_22" text="22" level="3" iconCls="revision" expanded="false" real_id="22" node_type="revision"/>
+      <name code="ri_3" id="ri_3" text="3" level="3" iconCls="revision" expanded="false" real_id="3" node_type="revision"/>
+      <name code="ri_4" id="ri_4" text="4" level="3" iconCls="revision" expanded="false" real_id="4" node_type="revision"/>
+      <name code="ri_44" id="ri_44" text="44" level="3" iconCls="revision" expanded="false" real_id="44" node_type="revision"/>
+      <name code="ri_45" id="ri_45" text="45" level="3" iconCls="revision" expanded="false" real_id="45" node_type="revision"/>
+      <name code="ri_46" id="ri_46" text="46" level="3" iconCls="revision" expanded="false" real_id="46" node_type="revision"/>
+      <name code="ri_5" id="ri_5" text="5" level="3" iconCls="revision" expanded="false" real_id="5" node_type="revision"/>
+      <name code="ri_81" id="ri_81" text="proj_rev" level="3" iconCls="revision" expanded="false" real_id="81" node_type="revision"/>
+    </name>
+  </name>
+</root>
+

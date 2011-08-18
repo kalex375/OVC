@@ -1,0 +1,75 @@
+create table ora_ver.OVC_REVISION
+(
+  id                   NUMBER(10) not null,
+  begin_timestamp      TIMESTAMP(6) default systimestamp not null,
+  code                 VARCHAR2(30) not null,
+  description          VARCHAR2(255),
+  project_id           NUMBER(10),
+  type                 VARCHAR2(4) not null,
+  revision_template_id NUMBER(10)
+)
+tablespace USERS
+  pctfree 10
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+comment on table ora_ver.OVC_REVISION
+  is 'Ревизии объектов БД';
+comment on column ora_ver.OVC_REVISION.id
+  is 'ID';
+comment on column ora_ver.OVC_REVISION.begin_timestamp
+  is 'Временная метка';
+comment on column ora_ver.OVC_REVISION.code
+  is 'Код ревизии';
+comment on column ora_ver.OVC_REVISION.description
+  is 'Коментарий';
+comment on column ora_ver.OVC_REVISION.project_id
+  is 'Проект';
+comment on column ora_ver.OVC_REVISION.type
+  is 'Тип ревизии (HARD-сохраняются исходники; SOFT - без сохранения)';
+comment on column ora_ver.OVC_REVISION.revision_template_id
+  is 'Шаблон ревизии';
+alter table ora_ver.OVC_REVISION
+  add constraint PK_OVC_REVISION_ID primary key (ID)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_REVISION
+  add constraint UI_OVC_REVISION_CODE unique (CODE)
+  using index 
+  tablespace USERS
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 64K
+    minextents 1
+    maxextents unlimited
+  );
+alter table ora_ver.OVC_REVISION
+  add constraint FK_OVC_REVISION_PROJ_ID foreign key (PROJECT_ID)
+  references ora_ver.OVC_PROJECT (ID);
+alter table ora_ver.OVC_REVISION
+  add constraint FK_OVC_REVISION_TEMP_ID foreign key (REVISION_TEMPLATE_ID)
+  references ora_ver.OVC_REVISION_TEMPLATE (ID);
+alter table ora_ver.OVC_REVISION
+  add constraint CHK_OVC_REVISION_PROJ_TEMP_ID
+  check ((PROJECT_ID is null and REVISION_TEMPLATE_ID is not null) or (PROJECT_ID is not null and REVISION_TEMPLATE_ID is null));
+alter table ora_ver.OVC_REVISION
+  add constraint CHK_OVC_REVISION_TYPE
+  check (TYPE in ('HARD','SOFT'));
+
